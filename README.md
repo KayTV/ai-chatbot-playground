@@ -38,13 +38,17 @@
 
 This template uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to access multiple AI models through a unified interface. The default configuration includes [xAI](https://x.ai) models (`grok-2-vision-1212`, `grok-3-mini`) routed through the gateway.
 
-### AI Gateway Authentication
+### OpenAI API Configuration
 
-**For Vercel deployments**: Authentication is handled automatically via OIDC tokens.
+This project is configured to use OpenAI directly. You need to provide an OpenAI API key by setting the `OPENAI_API_KEY` environment variable in your `.env.local` file.
 
-**For non-Vercel deployments**: You need to provide an AI Gateway API key by setting the `AI_GATEWAY_API_KEY` environment variable in your `.env.local` file.
+**To get your OpenAI API key:**
 
-With the [AI SDK](https://ai-sdk.dev/docs/introduction), you can also switch to direct LLM providers like [OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), and [many more](https://ai-sdk.dev/providers/ai-sdk-providers) with just a few lines of code.
+1. Go to [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Create a new API key
+3. Add it to your `.env.local` file as `OPENAI_API_KEY=your-key-here`
+
+With the [AI SDK](https://ai-sdk.dev/docs/introduction), you can also switch to other LLM providers like [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), [Google AI](https://ai.google.dev), and [many more](https://ai-sdk.dev/providers/ai-sdk-providers) with just a few lines of code.
 
 ## Deploy Your Own
 
@@ -54,13 +58,25 @@ You can deploy your own version of the Next.js AI Chatbot to Vercel with one cli
 
 ## Running locally
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js AI Chatbot. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/projects/environment-variables) for this, but a `.env` file is all that is necessary.
+You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js AI Chatbot. Create a `.env.local` file in the root directory and add your environment variables.
 
-> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various AI and authentication provider accounts.
+> Note: You should not commit your `.env.local` file or it will expose secrets that will allow others to control access to your various AI and authentication provider accounts.
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
-3. Download your environment variables: `vercel env pull`
+**Setup steps:**
+
+1. Create your `.env.local` file:
+
+```bash
+cp .env.example .env.local
+```
+
+2. Edit `.env.local` and add your actual API keys:
+
+   - `OPENAI_API_KEY` - Get from [OpenAI Platform](https://platform.openai.com/api-keys)
+   - `POSTGRES_URL` - Your PostgreSQL database connection string
+   - `AUTH_SECRET` - Generate with `openssl rand -base64 32`
+
+3. Install dependencies and run the development server:
 
 ```bash
 pnpm install
@@ -69,3 +85,11 @@ pnpm dev
 ```
 
 Your app template should now be running on [localhost:3000](http://localhost:3000).
+
+**Alternative: Using Vercel Environment Variables**
+
+If you're deploying to Vercel, you can use their environment variables system:
+
+1. Install Vercel CLI: `npm i -g vercel`
+2. Link local instance with Vercel and GitHub accounts: `vercel link`
+3. Download your environment variables: `vercel env pull`

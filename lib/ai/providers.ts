@@ -1,4 +1,4 @@
-import { gateway } from "@ai-sdk/gateway";
+import { createOpenAI } from "@ai-sdk/openai";
 import {
   customProvider,
   extractReasoningMiddleware,
@@ -7,6 +7,11 @@ import {
 import { isTestEnvironment } from "../constants";
 
 const THINKING_SUFFIX_REGEX = /-thinking$/;
+
+// Initialize OpenAI provider
+const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 export const myProvider = isTestEnvironment
   ? (() => {
@@ -27,6 +32,24 @@ export const myProvider = isTestEnvironment
     })()
   : null;
 
+// Map model IDs to OpenAI model names
+function getOpenAIModelName(modelId: string): string {
+  // Remove provider prefix if present
+  const cleanId = modelId.replace(/^openai\//, "");
+
+  // Map custom IDs to actual OpenAI model names
+  const modelMap: Record<string, string> = {
+    "gpt-4.1-mini": "gpt-4o-mini",
+    "gpt-5.2": "gpt-4o",
+    "gpt-4o-mini": "gpt-4o-mini",
+    "gpt-4o": "gpt-4o",
+    "gpt-4": "gpt-4",
+    "gpt-3.5-turbo": "gpt-3.5-turbo",
+  };
+
+  return modelMap[cleanId] || cleanId;
+}
+
 export function getLanguageModel(modelId: string) {
   if (isTestEnvironment && myProvider) {
     return myProvider.languageModel(modelId);
@@ -36,27 +59,29 @@ export function getLanguageModel(modelId: string) {
     modelId.includes("reasoning") || modelId.endsWith("-thinking");
 
   if (isReasoningModel) {
-    const gatewayModelId = modelId.replace(THINKING_SUFFIX_REGEX, "");
+    const cleanModelId = modelId.replace(THINKING_SUFFIX_REGEX, "");
+    const openaiModel = getOpenAIModelName(cleanModelId);
 
     return wrapLanguageModel({
-      model: gateway.languageModel(gatewayModelId),
+      model: openai(openaiModel),
       middleware: extractReasoningMiddleware({ tagName: "thinking" }),
     });
   }
 
-  return gateway.languageModel(modelId);
+  const openaiModel = getOpenAIModelName(modelId);
+  return openai(openaiModel);
 }
 
 export function getTitleModel() {
   if (isTestEnvironment && myProvider) {
     return myProvider.languageModel("title-model");
   }
-  return gateway.languageModel("anthropic/claude-haiku-4.5");
+  return openai("gpt-4o-mini");
 }
 
 export function getArtifactModel() {
   if (isTestEnvironment && myProvider) {
     return myProvider.languageModel("artifact-model");
   }
-  return gateway.languageModel("anthropic/claude-haiku-4.5");
+  return openai("gpt-4o-mini");
 }
