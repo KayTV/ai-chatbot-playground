@@ -36,19 +36,37 @@
 
 ## Model Providers
 
-This template uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to access multiple AI models through a unified interface. The default configuration includes [xAI](https://x.ai) models (`grok-2-vision-1212`, `grok-3-mini`) routed through the gateway.
+This template supports multiple AI providers out of the box. You can use **OpenAI**, **Google Generative AI**, or **Anthropic** by configuring the appropriate API keys. At least one provider API key is required.
 
-### OpenAI API Configuration
+### Supported Providers
 
-This project is configured to use OpenAI directly. You need to provide an OpenAI API key by setting the `OPENAI_API_KEY` environment variable in your `.env.local` file.
+#### OpenAI
 
-**To get your OpenAI API key:**
+- **Models**: GPT-4o, GPT-4o-mini, GPT-4, GPT-3.5-turbo
+- **Get API Key**: [OpenAI Platform](https://platform.openai.com/api-keys)
+- **Environment Variable**: `OPENAI_API_KEY`
 
-1. Go to [OpenAI Platform](https://platform.openai.com/api-keys)
-2. Create a new API key
-3. Add it to your `.env.local` file as `OPENAI_API_KEY=your-key-here`
+#### Google Generative AI
 
-With the [AI SDK](https://ai-sdk.dev/docs/introduction), you can also switch to other LLM providers like [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), [Google AI](https://ai.google.dev), and [many more](https://ai-sdk.dev/providers/ai-sdk-providers) with just a few lines of code.
+- **Models**: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini Pro
+- **Get API Key**: [Google AI Studio](https://makersuite.google.com/app/apikey)
+- **Environment Variable**: `GOOGLE_GENERATIVE_AI_API_KEY`
+
+#### Anthropic
+
+- **Models**: Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku
+- **Get API Key**: [Anthropic Console](https://console.anthropic.com/settings/keys)
+- **Environment Variable**: `ANTHROPIC_API_KEY`
+
+### How to Use Different Providers
+
+The template automatically detects which provider to use based on:
+
+1. **Model ID prefix**: Use `openai/gpt-4o`, `google/gemini-1.5-pro`, or `anthropic/claude-3-5-sonnet`
+2. **Model name patterns**: Models with "gpt" use OpenAI, "gemini" use Google, "claude" use Anthropic
+3. **Default fallback**: If no specific provider is detected, OpenAI is used by default
+
+You can configure one or more providers in your `.env.local` file. The system will use the first available provider when no specific provider is requested.
 
 ## Deploy Your Own
 
@@ -58,7 +76,7 @@ You can deploy your own version of the Next.js AI Chatbot to Vercel with one cli
 
 ## Running locally
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js AI Chatbot. Create a `.env.local` file in the root directory and add your environment variables.
+You will need to configure environment variables to run the AI Chatbot. Create a `.env.local` file in the root directory and add your environment variables.
 
 > Note: You should not commit your `.env.local` file or it will expose secrets that will allow others to control access to your various AI and authentication provider accounts.
 
@@ -67,12 +85,19 @@ You will need to use the environment variables [defined in `.env.example`](.env.
 1. Create your `.env.local` file:
 
 ```bash
-cp .env.example .env.local
+touch .env.local
 ```
 
 2. Edit `.env.local` and add your actual API keys:
 
+   **AI Provider Keys (at least one required):**
+
    - `OPENAI_API_KEY` - Get from [OpenAI Platform](https://platform.openai.com/api-keys)
+   - `GOOGLE_GENERATIVE_AI_API_KEY` - Get from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - `ANTHROPIC_API_KEY` - Get from [Anthropic Console](https://console.anthropic.com/settings/keys)
+
+   **Other Required Variables:**
+
    - `POSTGRES_URL` - Your PostgreSQL database connection string
    - `AUTH_SECRET` - Generate with `openssl rand -base64 32`
 
