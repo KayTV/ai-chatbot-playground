@@ -1,12 +1,15 @@
 "use client";
 
+import Form from "next/form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useActionState, useEffect, useState } from "react";
-import { AuthForm } from "@/components/auth-form";
-import { SubmitButton } from "@/components/submit-button";
+import { LandingHeader } from "@/components/landing-header";
 import { toast } from "@/components/toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { type RegisterActionState, register } from "../actions";
 
 export default function Page() {
@@ -50,27 +53,114 @@ export default function Page() {
   };
 
   return (
-    <div className="flex h-dvh w-screen items-start justify-center bg-background pt-12 md:items-center md:pt-0">
-      <div className="flex w-full max-w-md flex-col gap-12 overflow-hidden rounded-2xl">
-        <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
-          <h3 className="font-semibold text-xl dark:text-zinc-50">Sign Up</h3>
-          <p className="text-gray-500 text-sm dark:text-zinc-400">
-            Create an account with your email and password
-          </p>
-        </div>
-        <AuthForm action={handleSubmit} defaultEmail={email}>
-          <SubmitButton isSuccessful={isSuccessful}>Sign Up</SubmitButton>
-          <p className="mt-4 text-center text-gray-600 text-sm dark:text-zinc-400">
-            {"Already have an account? "}
+    <div className="flex min-h-screen w-screen flex-col bg-[#f5e9f2]">
+      <LandingHeader />
+
+      <div className="flex grow items-center justify-center px-4 py-12">
+        <div className="flex w-full max-w-[414px] flex-col">
+          {/* Main Card */}
+          <div className="rounded-[10px] border border-[#e5e5e5] bg-white px-8 py-8 shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
+            <h1 className="mb-5 text-center font-serif text-[#171717] text-[32px] leading-[1.5] tracking-[0.16px]">
+              Sign up
+            </h1>
+
+            {/* Microsoft Button */}
+            <button
+              className="mb-5 flex w-full items-center justify-center gap-2 rounded-[8px] border border-[#e5e5e5] px-4 py-2.5 shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
+              type="button"
+            >
+              <svg
+                className="size-[13.25px]"
+                fill="none"
+                viewBox="0 0 21 21"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect fill="#F25022" height="10" width="10" />
+                <rect fill="#7FBA00" height="10" width="10" x="11" />
+                <rect fill="#00A4EF" height="10" width="10" y="11" />
+                <rect fill="#FFB900" height="10" width="10" x="11" y="11" />
+              </svg>
+              <span className="font-medium text-[#171717] text-[14px]">
+                Continue with Microsoft
+              </span>
+            </button>
+
+            {/* Divider */}
+            <div className="relative mb-5 flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-[#f1f5f9] border-t" />
+              </div>
+              <div className="relative bg-white px-3">
+                <span className="font-medium text-[#737373] text-[14px]">
+                  or
+                </span>
+              </div>
+            </div>
+
+            {/* Form */}
+            <Form action={handleSubmit} className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <Label
+                  className="font-medium text-[14px] text-black"
+                  htmlFor="email"
+                >
+                  Email
+                </Label>
+                <Input
+                  autoComplete="email"
+                  autoFocus
+                  className="h-[38px] rounded-[6px] border-[#cbd5e1] bg-white px-3 py-2 font-medium text-[14px] placeholder:text-[#94a3b8]"
+                  defaultValue={email}
+                  id="email"
+                  name="email"
+                  placeholder="name@domain.com"
+                  required
+                  type="email"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label
+                  className="font-medium text-[14px] text-black"
+                  htmlFor="password"
+                >
+                  Password
+                </Label>
+                <Input
+                  className="h-[38px] rounded-[6px] border-[#cbd5e1] bg-white px-3 py-2 font-medium text-[14px] placeholder:text-[#94a3b8]"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                  type="password"
+                />
+                <p className="text-[#999] text-[12px]">
+                  Password should be at least 10 characters and include a
+                  special character.
+                </p>
+              </div>
+
+              <Button
+                className="h-[36px] w-full rounded-[8px] bg-[#b14092] px-4 py-2.5 font-medium text-[14px] text-white hover:bg-[#9a3680]"
+                disabled={isSuccessful}
+                type="submit"
+              >
+                {isSuccessful ? "Success!" : "Create account"}
+              </Button>
+            </Form>
+          </div>
+
+          {/* Bottom Link */}
+          <p className="mt-6 text-center font-medium text-[#171717] text-[14px]">
+            Already have an account?{" "}
             <Link
-              className="font-semibold text-gray-800 hover:underline dark:text-zinc-200"
+              className="underline decoration-solid [text-decoration-skip-ink:none] [text-underline-position:from-font] hover:opacity-70"
               href="/login"
             >
-              Sign in
+              Log in
             </Link>
-            {" instead."}
           </p>
-        </AuthForm>
+        </div>
       </div>
     </div>
   );

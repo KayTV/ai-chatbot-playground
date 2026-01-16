@@ -226,6 +226,22 @@ export const LogoGoogle = ({ size = 16 }: { size?: number }) => {
   );
 };
 
+export const LogoMicrosoft = ({ size = 16 }: { size?: number }) => {
+  return (
+    <svg
+      height={size}
+      style={{ color: "currentcolor" }}
+      viewBox="0 0 16 16"
+      width={size}
+    >
+      <path d="M0 0h7.6v7.6H0z" fill="#F25022" />
+      <path d="M8.4 0H16v7.6H8.4z" fill="#7FBA00" />
+      <path d="M0 8.4h7.6V16H0z" fill="#00A4EF" />
+      <path d="M8.4 8.4H16V16H8.4z" fill="#FFB900" />
+    </svg>
+  );
+};
+
 export const LogoAnthropic = () => {
   return (
     <svg

@@ -1,77 +1,76 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { useActionState, useEffect, useState } from "react";
-
-import { AuthForm } from "@/components/auth-form";
-import { SubmitButton } from "@/components/submit-button";
-import { toast } from "@/components/toast";
-import { type LoginActionState, login } from "../actions";
+import { LogoGoogle, LogoMicrosoft } from "@/components/icons";
+import { LandingHeader } from "@/components/landing-header";
 
 export default function Page() {
-  const router = useRouter();
+  const handleMicrosoftLogin = () => {
+    // TODO: Implement Microsoft OAuth login
+    console.log("Microsoft login clicked");
+  };
 
-  const [email, setEmail] = useState("");
-  const [isSuccessful, setIsSuccessful] = useState(false);
-
-  const [state, formAction] = useActionState<LoginActionState, FormData>(
-    login,
-    {
-      status: "idle",
-    }
-  );
-
-  const { update: updateSession } = useSession();
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: router and updateSession are stable refs
-  useEffect(() => {
-    if (state.status === "failed") {
-      toast({
-        type: "error",
-        description: "Invalid credentials!",
-      });
-    } else if (state.status === "invalid_data") {
-      toast({
-        type: "error",
-        description: "Failed validating your submission!",
-      });
-    } else if (state.status === "success") {
-      setIsSuccessful(true);
-      updateSession();
-      router.refresh();
-    }
-  }, [state.status]);
-
-  const handleSubmit = (formData: FormData) => {
-    setEmail(formData.get("email") as string);
-    formAction(formData);
+  const handleGoogleLogin = () => {
+    // TODO: Implement Google OAuth login
+    console.log("Google login clicked");
   };
 
   return (
-    <div className="flex h-dvh w-screen items-start justify-center bg-background pt-12 md:items-center md:pt-0">
-      <div className="flex w-full max-w-md flex-col gap-12 overflow-hidden rounded-2xl">
-        <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
-          <h3 className="font-semibold text-xl dark:text-zinc-50">Sign In</h3>
-          <p className="text-gray-500 text-sm dark:text-zinc-400">
-            Use your email and password to sign in
-          </p>
+    <div className="relative flex h-screen w-screen flex-col bg-[#f5e9f2]">
+      <LandingHeader />
+
+      {/* Main Content */}
+      <main className="flex flex-1 flex-col items-center justify-center">
+        {/* Login Card */}
+        <div className="w-[414px] rounded-[10px] border border-neutral-200 bg-white px-[31px] py-[31px] shadow-lg">
+          <div className="flex flex-col items-center gap-[18px]">
+            {/* Welcome Text */}
+            <h2 className="text-center font-medium text-[32px] text-neutral-900 leading-[1.5] tracking-[0.16px]">
+              Welcome
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-center font-normal text-[14px] text-neutral-900 leading-[1.5] tracking-[0.07px]">
+              Sign in to access the Form-Filling Assistant
+            </p>
+
+            {/* OAuth Buttons */}
+            <div className="mt-4 flex w-full flex-col gap-4">
+              {/* Microsoft Button */}
+              <button
+                className="flex min-h-[36px] w-full items-center justify-center gap-2 rounded-[8px] border border-neutral-200 px-4 py-[7.5px] shadow-sm transition-colors hover:bg-neutral-50"
+                onClick={handleMicrosoftLogin}
+                type="button"
+              >
+                <LogoMicrosoft size={13.25} />
+                <span className="font-medium text-[14px] text-neutral-900 leading-[14px]">
+                  Continue with Microsoft
+                </span>
+              </button>
+
+              {/* Google Button */}
+              <button
+                className="flex min-h-[36px] w-full items-center justify-center gap-2 rounded-[8px] border border-neutral-200 px-4 py-[7.5px] shadow-sm transition-colors hover:bg-neutral-50"
+                onClick={handleGoogleLogin}
+                type="button"
+              >
+                <LogoGoogle size={13.25} />
+                <span className="font-medium text-[14px] text-neutral-900 leading-[14px]">
+                  Continue with Google
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
-        <AuthForm action={handleSubmit} defaultEmail={email}>
-          <SubmitButton isSuccessful={isSuccessful}>Sign in</SubmitButton>
-          <p className="mt-4 text-center text-gray-600 text-sm dark:text-zinc-400">
-            {"Don't have an account? "}
-            <Link
-              className="font-semibold text-gray-800 hover:underline dark:text-zinc-200"
-              href="/register"
-            >
-              Sign up
-            </Link>
-            {" for free."}
-          </p>
-        </AuthForm>
-      </div>
+
+        {/* Sign up Link */}
+        <p className="mt-8 text-center font-medium text-[14px] text-neutral-900 leading-[1.5] tracking-[0.07px]">
+          Need an account?{" "}
+          <Link className="underline" href="/register">
+            Sign up
+          </Link>
+        </p>
+      </main>
     </div>
   );
 }
