@@ -22,7 +22,7 @@ export default function LandingPage() {
             </p>
             <div>
               <Link href="/chat">
-                <Button className="rounded-lg bg-[#b14092] px-7 py-3 text-white hover:bg-[#9a3680]">
+                <Button className="cursor-pointer rounded-lg bg-[#b14092] px-7 py-3 text-white hover:bg-[#9a3680]">
                   Get started
                 </Button>
               </Link>

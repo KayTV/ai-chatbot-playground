@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { LogoGoogle, LogoMicrosoft } from "@/components/icons";
 import { LandingHeader } from "@/components/landing-header";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const handleMicrosoftLogin = () => {
@@ -37,28 +38,30 @@ export default function Page() {
             {/* OAuth Buttons */}
             <div className="mt-4 flex w-full flex-col gap-4">
               {/* Microsoft Button */}
-              <button
-                className="flex min-h-[36px] w-full items-center justify-center gap-2 rounded-[8px] border border-neutral-200 px-4 py-[7.5px] shadow-sm transition-colors hover:bg-neutral-50"
+              <Button
+                className="flex min-h-[36px] w-full cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-neutral-200 bg-white px-4 py-[7.5px] shadow-sm transition-colors hover:bg-neutral-50"
                 onClick={handleMicrosoftLogin}
                 type="button"
+                variant="outline"
               >
                 <LogoMicrosoft size={13.25} />
                 <span className="font-medium text-[14px] text-neutral-900 leading-[14px]">
                   Continue with Microsoft
                 </span>
-              </button>
+              </Button>
 
               {/* Google Button */}
-              <button
-                className="flex min-h-[36px] w-full items-center justify-center gap-2 rounded-[8px] border border-neutral-200 px-4 py-[7.5px] shadow-sm transition-colors hover:bg-neutral-50"
+              <Button
+                className="flex min-h-[36px] w-full cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-neutral-200 bg-white px-4 py-[7.5px] shadow-sm transition-colors hover:bg-neutral-50"
                 onClick={handleGoogleLogin}
                 type="button"
+                variant="outline"
               >
                 <LogoGoogle size={13.25} />
                 <span className="font-medium text-[14px] text-neutral-900 leading-[14px]">
                   Continue with Google
                 </span>
-              </button>
+              </Button>
             </div>
           </div>
         </div>

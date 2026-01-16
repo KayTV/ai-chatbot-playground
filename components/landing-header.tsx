@@ -12,16 +12,17 @@ export function LandingHeader() {
           </h1>
         </Link>
         <div className="flex items-center gap-4">
-          <button
-            className="flex items-center gap-1 px-4 py-2 text-[#0f172a] text-[14px]"
+          <Button
+            className="flex cursor-pointer items-center gap-1 bg-transparent px-4 py-2 text-[#0f172a] text-[14px] hover:bg-transparent hover:opacity-70"
             type="button"
+            variant="ghost"
           >
             <span className="font-medium">English</span>
             <ChevronDown className="size-3" />
-          </button>
+          </Button>
           <Link href="/login">
             <Button
-              className="rounded-lg bg-[#b14092] px-5 py-2.5 text-white hover:bg-[#9a3680]"
+              className="cursor-pointer rounded-lg bg-[#b14092] px-5 py-2.5 text-white hover:bg-[#9a3680]"
               size="sm"
             >
               Log in

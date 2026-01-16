@@ -65,9 +65,10 @@ export default function Page() {
             </h1>
 
             {/* Microsoft Button */}
-            <button
-              className="mb-5 flex w-full items-center justify-center gap-2 rounded-[8px] border border-[#e5e5e5] px-4 py-2.5 shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
+            <Button
+              className="mb-5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-[#e5e5e5] bg-white px-4 py-2.5 shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] transition-colors hover:bg-gray-50"
               type="button"
+              variant="outline"
             >
               <svg
                 className="size-[13.25px]"
@@ -83,7 +84,7 @@ export default function Page() {
               <span className="font-medium text-[#171717] text-[14px]">
                 Continue with Microsoft
               </span>
-            </button>
+            </Button>
 
             {/* Divider */}
             <div className="relative mb-5 flex items-center justify-center">
@@ -141,7 +142,7 @@ export default function Page() {
               </div>
 
               <Button
-                className="h-[36px] w-full rounded-[8px] bg-[#b14092] px-4 py-2.5 font-medium text-[14px] text-white hover:bg-[#9a3680]"
+                className="h-[36px] w-full cursor-pointer rounded-[8px] bg-[#b14092] px-4 py-2.5 font-medium text-[14px] text-white hover:bg-[#9a3680]"
                 disabled={isSuccessful}
                 type="submit"
               >
