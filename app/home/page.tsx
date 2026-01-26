@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { HomeHistory } from "@/components/home-history";
 import { LandingHeader } from "@/components/landing-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -65,6 +66,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <HomeHistory />
 
       <footer className="bg-[#111827] py-[50px]">
         <div className="mx-auto max-w-[1280px] px-8">
