@@ -16,6 +16,7 @@ import { auth, type UserType } from "@/app/(auth)/auth";
 import { entitlementsByUserType } from "@/lib/ai/entitlements";
 import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
 import { getLanguageModel } from "@/lib/ai/providers";
+import { browseWebsite } from "@/lib/ai/tools/browse-website";
 import { createDocument } from "@/lib/ai/tools/create-document";
 import { getWeather } from "@/lib/ai/tools/get-weather";
 import { requestSuggestions } from "@/lib/ai/tools/request-suggestions";
@@ -183,6 +184,7 @@ export async function POST(request: Request) {
                 "createDocument",
                 "updateDocument",
                 "requestSuggestions",
+                "browseWebsite",
               ],
           experimental_transform: isReasoningModel
             ? undefined
@@ -202,6 +204,7 @@ export async function POST(request: Request) {
               session,
               dataStream,
             }),
+            browseWebsite: browseWebsite({ session, dataStream }),
           },
           experimental_telemetry: {
             isEnabled: isProductionEnvironment,

@@ -5,6 +5,7 @@ import { memo, useState } from "react";
 import type { Vote } from "@/lib/db/schema";
 import type { ChatMessage } from "@/lib/types";
 import { cn, sanitizeText } from "@/lib/utils";
+import { BrowserPreview } from "./browser-preview";
 import { useDataStream } from "./data-stream-provider";
 import { DocumentToolResult } from "./document";
 import { DocumentPreview } from "./document-preview";
@@ -336,6 +337,29 @@ const PurePreviewMessage = ({
                     )}
                   </ToolContent>
                 </Tool>
+              );
+            }
+
+            if (type === "tool-browseWebsite") {
+              const { toolCallId } = part;
+
+              if (part.output && "error" in part.output) {
+                return (
+                  <div
+                    className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-500 dark:bg-red-950/50"
+                    key={toolCallId}
+                  >
+                    Error browsing website: {String(part.output.error)}
+                  </div>
+                );
+              }
+
+              return (
+                <BrowserPreview
+                  isReadonly={isReadonly}
+                  key={toolCallId}
+                  result={part.output}
+                />
               );
             }
 

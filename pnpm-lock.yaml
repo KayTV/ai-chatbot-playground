@@ -44,6 +44,9 @@ importers:
       '@icons-pack/react-simple-icons':
         specifier: ^13.7.0
         version: 13.8.0(react@19.0.1)
+      '@onkernel/sdk':
+        specifier: ^0.28.0
+        version: 0.28.0
       '@opentelemetry/api':
         specifier: ^1.9.0
         version: 1.9.0
@@ -1186,6 +1189,9 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@onkernel/sdk@0.28.0':
+    resolution: {integrity: sha512-0m6ReJxXtGKIj4BJgbPGsS4amF3KsnSgCYADjPkH+Tqre9pYH/muku5pFQ4dOAybNkVxJ+UEUo9B5i+aMgG6sw==}
 
   '@opentelemetry/api-logs@0.200.0':
     resolution: {integrity: sha512-IKJBQxh91qJ+3ssRly5hYEJ8NDHu9oY/B1PXVSCWf7zytmYO9RNLB0Ox9XQ/fJ8m6gY6Q6NtBWlmXfaXt5Uc4Q==}
@@ -5209,6 +5215,8 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@16.0.10':
     optional: true
+
+  '@onkernel/sdk@0.28.0': {}
 
   '@opentelemetry/api-logs@0.200.0':
     dependencies:
