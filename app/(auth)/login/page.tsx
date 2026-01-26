@@ -1,11 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { LogoGoogle, LogoMicrosoft } from "@/components/icons";
 import { LandingHeader } from "@/components/landing-header";
 import { Button } from "@/components/ui/button";
 
 export default function Page() {
+  const router = useRouter();
+
   const handleMicrosoftLogin = () => {
     // TODO: Implement Microsoft OAuth login
     console.log("Microsoft login clicked");
@@ -69,9 +71,13 @@ export default function Page() {
         {/* Sign up Link */}
         <p className="mt-8 text-center font-medium text-[14px] text-neutral-900 leading-[1.5] tracking-[0.07px]">
           Need an account?{" "}
-          <Link className="underline" href="/register">
+          <button
+            className="cursor-pointer underline"
+            onClick={() => router.push("/register")}
+            type="button"
+          >
             Sign up
-          </Link>
+          </button>
         </p>
       </main>
     </div>

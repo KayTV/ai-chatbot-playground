@@ -1,8 +1,11 @@
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { LandingHeader } from "@/components/landing-header";
 import { Button } from "@/components/ui/button";
 
 export default function LandingPage() {
+  const router = useRouter();
   return (
     <div className="relative min-h-screen bg-white">
       {/* Header */}
@@ -21,11 +24,12 @@ export default function LandingPage() {
               applications faster.
             </p>
             <div>
-              <Link href="/chat">
-                <Button className="cursor-pointer rounded-lg bg-[#b14092] px-7 py-3 text-white hover:bg-[#9a3680]">
-                  Get started
-                </Button>
-              </Link>
+              <Button
+                className="cursor-pointer rounded-lg bg-[#b14092] px-7 py-3 text-white hover:bg-[#9a3680]"
+                onClick={() => router.push("/chat")}
+              >
+                Get started
+              </Button>
             </div>
           </div>
 

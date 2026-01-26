@@ -1,7 +1,6 @@
 "use client";
 
 import Form from "next/form";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useActionState, useEffect, useState } from "react";
@@ -154,12 +153,13 @@ export default function Page() {
           {/* Bottom Link */}
           <p className="mt-6 text-center font-medium text-[#171717] text-[14px]">
             Already have an account?{" "}
-            <Link
-              className="underline decoration-solid [text-decoration-skip-ink:none] [text-underline-position:from-font] hover:opacity-70"
-              href="/login"
+            <button
+              className="cursor-pointer underline decoration-solid [text-decoration-skip-ink:none] [text-underline-position:from-font] hover:opacity-70"
+              onClick={() => router.push("/login")}
+              type="button"
             >
               Log in
-            </Link>
+            </button>
           </p>
         </div>
       </div>
