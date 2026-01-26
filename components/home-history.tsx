@@ -130,7 +130,9 @@ function ChatGroup({
   chats: Chat[];
   onDelete: (chatId: string) => void;
 }) {
-  if (chats.length === 0) return null;
+  if (chats.length === 0) {
+    return null;
+  }
 
   return (
     <div className="mb-6">
@@ -204,8 +206,8 @@ export function HomeHistory() {
     if (isLoading) {
       return (
         <div className="flex flex-col gap-2">
-          {[44, 32, 28, 64, 52].map((item, index) => (
-            <div className="flex h-6 items-center" key={index}>
+          {[44, 32, 28, 64, 52].map((item) => (
+            <div className="flex h-6 items-center" key={item}>
               <div
                 className="h-4 animate-pulse rounded bg-muted"
                 style={{ width: `${item}%` }}
