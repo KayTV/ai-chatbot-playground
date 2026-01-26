@@ -52,7 +52,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex min-h-screen w-screen flex-col bg-[#f5e9f2]">
+    <div className="flex min-h-screen w-screen flex-col bg-accent">
       <LandingHeader />
 
       <div className="flex grow items-center justify-center px-4 py-12">
@@ -141,7 +141,7 @@ export default function Page() {
               </div>
 
               <Button
-                className="h-[36px] w-full cursor-pointer rounded-[8px] bg-[#b14092] px-4 py-2.5 font-medium text-[14px] text-white hover:bg-[#9a3680]"
+                className="h-[36px] w-full cursor-pointer rounded-[8px] bg-primary px-4 py-2.5 font-medium text-[14px] text-primary-foreground hover:bg-primary/90"
                 disabled={isSuccessful}
                 type="submit"
               >

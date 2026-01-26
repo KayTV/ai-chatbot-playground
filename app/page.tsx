@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 export default function LandingPage() {
   const router = useRouter();
   return (
-    <div className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-background">
       {/* Header */}
       <LandingHeader />
 
@@ -25,8 +25,8 @@ export default function LandingPage() {
             </p>
             <div>
               <Button
-                className="cursor-pointer rounded-lg bg-[#b14092] px-7 py-3 text-white hover:bg-[#9a3680]"
-                onClick={() => router.push("/chat")}
+                className="cursor-pointer rounded-lg bg-primary px-7 py-3 text-primary-foreground hover:bg-primary/90"
+                onClick={() => router.push("/login")}
               >
                 Get started
               </Button>
@@ -50,12 +50,12 @@ export default function LandingPage() {
       </section>
 
       {/* How it works Section */}
-      <section className="bg-white py-[115px]">
+      <section className="bg-background py-[115px]">
         <div className="mx-auto max-w-[1280px] px-8">
-          <h2 className="mb-[21px] font-serif text-[28px] text-black leading-[1.5]">
+          <h2 className="mb-[21px] font-serif text-[28px] text-foreground leading-[1.5]">
             How it works
           </h2>
-          <p className="mb-[58px] max-w-[846px] text-[18px] text-black leading-[1.5]">
+          <p className="mb-[58px] max-w-[846px] text-[18px] text-foreground leading-[1.5]">
             This tool uses artificial intelligence (AI) to help you complete
             applications, while you stay in control.
           </p>
@@ -63,42 +63,42 @@ export default function LandingPage() {
           {/* Steps Grid */}
           <div className="grid gap-6 md:grid-cols-3">
             {/* Step 1 */}
-            <div className="rounded-[25px] bg-[#fafafa] p-[30px]">
-              <p className="mb-[20px] font-mono text-[#b14092] text-[12px] uppercase">
+            <div className="rounded-[25px] bg-secondary p-[30px]">
+              <p className="mb-[20px] font-mono text-primary text-[12px] uppercase">
                 step 1
               </p>
-              <h3 className="mb-[28px] font-serif text-[20px] text-black leading-[1.5]">
+              <h3 className="mb-[28px] font-serif text-[20px] text-foreground leading-[1.5]">
                 Start and autofill
               </h3>
-              <p className="text-[16px] text-black leading-[1.5]">
+              <p className="text-[16px] text-foreground leading-[1.5]">
                 AI autofills the application for you, using client data from
                 your case management system.
               </p>
             </div>
 
             {/* Step 2 */}
-            <div className="rounded-[25px] bg-[#fafafa] p-[30px]">
-              <p className="mb-[20px] font-mono text-[#b14092] text-[12px] uppercase">
+            <div className="rounded-[25px] bg-secondary p-[30px]">
+              <p className="mb-[20px] font-mono text-primary text-[12px] uppercase">
                 step 2
               </p>
-              <h3 className="mb-[28px] font-serif text-[20px] text-black leading-[1.5]">
+              <h3 className="mb-[28px] font-serif text-[20px] text-foreground leading-[1.5]">
                 Fill in any gaps
               </h3>
-              <p className="text-[16px] text-black leading-[1.5]">
+              <p className="text-[16px] text-foreground leading-[1.5]">
                 You review and complete anything that&apos;s missing. The AI
                 only adds what&apos;s already in your system.
               </p>
             </div>
 
             {/* Step 3 */}
-            <div className="rounded-[25px] bg-[#fafafa] p-[30px]">
-              <p className="mb-[20px] font-mono text-[#b14092] text-[12px] uppercase">
+            <div className="rounded-[25px] bg-secondary p-[30px]">
+              <p className="mb-[20px] font-mono text-primary text-[12px] uppercase">
                 step 3
               </p>
-              <h3 className="mb-[28px] font-serif text-[20px] text-black leading-[1.5]">
+              <h3 className="mb-[28px] font-serif text-[20px] text-foreground leading-[1.5]">
                 Submit with confidence
               </h3>
-              <p className="text-[16px] text-black leading-[1.5]">
+              <p className="text-[16px] text-foreground leading-[1.5]">
                 You submit the application once everything looks right. Nothing
                 is submitted automatically.
               </p>

@@ -9,23 +9,21 @@ export default function Page() {
   const router = useRouter();
 
   const handleMicrosoftLogin = () => {
-    // TODO: Implement Microsoft OAuth login
-    console.log("Microsoft login clicked");
+    router.push("/home");
   };
 
   const handleGoogleLogin = () => {
-    // TODO: Implement Google OAuth login
-    console.log("Google login clicked");
+    router.push("/home");
   };
 
   return (
-    <div className="relative flex h-screen w-screen flex-col bg-[#f5e9f2]">
+    <div className="relative flex h-screen w-screen flex-col bg-accent">
       <LandingHeader />
 
       {/* Main Content */}
       <main className="flex flex-1 flex-col items-center justify-center">
         {/* Login Card */}
-        <div className="w-[414px] rounded-[10px] border border-neutral-200 bg-white px-[31px] py-[31px] shadow-lg">
+        <div className="w-[414px] rounded-[10px] border border-border bg-card px-[31px] py-[31px] shadow-lg">
           <div className="flex flex-col items-center gap-[18px]">
             {/* Welcome Text */}
             <h2 className="text-center font-medium text-[32px] text-neutral-900 leading-[1.5] tracking-[0.16px]">
