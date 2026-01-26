@@ -64,7 +64,7 @@ export default function LandingPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {/* Step 1 */}
             <div className="rounded-[25px] bg-secondary p-[30px]">
-              <p className="mb-[20px] font-mono text-primary text-[12px] uppercase">
+              <p className="mb-[20px] font-mono text-[12px] text-primary uppercase">
                 step 1
               </p>
               <h3 className="mb-[28px] font-serif text-[20px] text-foreground leading-[1.5]">
@@ -78,7 +78,7 @@ export default function LandingPage() {
 
             {/* Step 2 */}
             <div className="rounded-[25px] bg-secondary p-[30px]">
-              <p className="mb-[20px] font-mono text-primary text-[12px] uppercase">
+              <p className="mb-[20px] font-mono text-[12px] text-primary uppercase">
                 step 2
               </p>
               <h3 className="mb-[28px] font-serif text-[20px] text-foreground leading-[1.5]">
@@ -92,7 +92,7 @@ export default function LandingPage() {
 
             {/* Step 3 */}
             <div className="rounded-[25px] bg-secondary p-[30px]">
-              <p className="mb-[20px] font-mono text-primary text-[12px] uppercase">
+              <p className="mb-[20px] font-mono text-[12px] text-primary uppercase">
                 step 3
               </p>
               <h3 className="mb-[28px] font-serif text-[20px] text-foreground leading-[1.5]">
